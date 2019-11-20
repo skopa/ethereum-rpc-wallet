@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Skopa\Ethereum\Contracts;
+namespace Skopa\EthereumWallet\Contracts;
 
 /**
  * Interface ContractInterface
- * @package Skopa\Ethereum\Contracts
+ * @package Skopa\EthereumWallet\Contracts
  */
 interface ContractInterface
 {

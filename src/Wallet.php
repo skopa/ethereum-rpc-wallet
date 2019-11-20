@@ -1,17 +1,17 @@
 <?php
 
 
-namespace Skopa\Ethereum;
+namespace Skopa\EthereumWallet;
 
 
-use Skopa\Ethereum\Contracts\ERC20TokenContract;
-use Skopa\Ethereum\Exceptions\WalletException;
+use Skopa\EthereumWallet\Contracts\ERC20TokenContract;
+use Skopa\EthereumWallet\Exceptions\WalletException;
 use Web3p\EthereumTx\Transaction as EthereumTransaction;
 use Web3p\EthereumUtil\Util;
 
 /**
  * Class Wallet
- * @package Skopa\Ethereum
+ * @package Skopa\EthereumWallet
  */
 class Wallet
 {
@@ -64,12 +64,12 @@ class Wallet
      * Create wallet from public address
      *
      * @param JsonRpcNetworkClient $network
-     * @param string $publicKey
+     * @param string $account
      * @return Wallet
      */
-    public static function fromPublicKey(JsonRpcNetworkClient $network, string $publicKey): Wallet
+    public static function fromPublicAddress(JsonRpcNetworkClient $network, string $account): Wallet
     {
-        return new static($network, $publicKey);
+        return new static($network, $account);
     }
 
     /**

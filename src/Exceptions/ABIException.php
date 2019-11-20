@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Skopa\Ethereum\Exceptions;
+namespace Skopa\EthereumWallet\Exceptions;
 
 
 use Exception;
 
 /**
  * Class ABIException
- * @package Skopa\Ethereum\Exceptions
+ * @package Skopa\EthereumWallet\Exceptions
  */
 class ABIException extends EthereumClientException
 {

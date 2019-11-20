@@ -1,11 +1,11 @@
 <?php
 
 
-namespace Skopa\Ethereum\Exceptions;
+namespace Skopa\EthereumWallet\Exceptions;
 
 /**
  * Class RequestException
- * @package Skopa\Ethereum\Exceptions
+ * @package Skopa\EthereumWallet\Exceptions
  */
 class RequestException extends EthereumClientException
 {

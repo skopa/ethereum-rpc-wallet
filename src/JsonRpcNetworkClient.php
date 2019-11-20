@@ -1,16 +1,16 @@
 <?php
 
 
-namespace Skopa\Ethereum;
+namespace Skopa\EthereumWallet;
 
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
-use Skopa\Ethereum\Exceptions\RequestException;
+use Skopa\EthereumWallet\Exceptions\RequestException;
 
 /**
  * Class JsonRpcNetworkClient
- * @package Skopa\Ethereum
+ * @package Skopa\EthereumWallet
  */
 class JsonRpcNetworkClient
 {

@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Skopa\Ethereum\Contracts;
+namespace Skopa\EthereumWallet\Contracts;
 
-use Skopa\Ethereum\Exceptions\ABIException;
-use Skopa\Ethereum\Utils;
+use Skopa\EthereumWallet\Exceptions\ABIException;
+use Skopa\EthereumWallet\Utils;
 
 /**
  * Class Contract
- * @package Skopa\Ethereum\Contracts
+ * @package Skopa\EthereumWallet\Contracts
  */
 abstract class Contract implements ContractInterface
 {

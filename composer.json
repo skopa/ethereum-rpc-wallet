@@ -16,7 +16,7 @@
   "minimum-stability": "dev",
   "autoload": {
     "psr-4": {
-      "Skopa\\Ethereum\\": "src/"
+      "Skopa\\EthereumWallet\\": "src/"
     }
   },
   "require": {

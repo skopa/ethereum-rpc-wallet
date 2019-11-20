@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Skopa\Ethereum;
+namespace Skopa\EthereumWallet;
 
 
 use BI\BigInteger;
@@ -9,7 +9,7 @@ use Web3p\EthereumUtil\Util;
 
 /**
  * Class Utils
- * @package Skopa\Ethereum
+ * @package Skopa\EthereumWallet
  * @see Util
  */
 class Utils extends Util

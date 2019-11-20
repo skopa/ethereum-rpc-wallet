@@ -1,16 +1,16 @@
 <?php
 
 
-namespace Skopa\Ethereum;
+namespace Skopa\EthereumWallet;
 
 
 use Brick\Math\BigDecimal;
-use Skopa\Ethereum\Contracts\ERC20TokenContract;
+use Skopa\EthereumWallet\Contracts\ERC20TokenContract;
 use Web3p\EthereumTx\Transaction as EthereumTransaction;
 
 /**
  * Class ContractManager
- * @package Skopa\Ethereum
+ * @package Skopa\EthereumWallet
  */
 class ContractManager
 {

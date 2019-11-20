@@ -1,12 +1,12 @@
 <?php
 
 
-namespace Skopa\Ethereum\Contracts;
+namespace Skopa\EthereumWallet\Contracts;
 
 
 /**
  * Class ERC20TokenContract
- * @package Skopa\Ethereum\Contracts
+ * @package Skopa\EthereumWallet\Contracts
  */
 abstract class ERC20TokenContract extends Contract
 {
@@ -17,7 +17,7 @@ abstract class ERC20TokenContract extends Contract
 
     /**
      * @return string
-     * @throws \Skopa\Ethereum\Exceptions\ABIException
+     * @throws \Skopa\EthereumWallet\Exceptions\ABIException
      */
     public function name(): string
     {
@@ -26,7 +26,7 @@ abstract class ERC20TokenContract extends Contract
 
     /**
      * @return string
-     * @throws \Skopa\Ethereum\Exceptions\ABIException
+     * @throws \Skopa\EthereumWallet\Exceptions\ABIException
      */
     public function decimals(): string
     {
@@ -35,7 +35,7 @@ abstract class ERC20TokenContract extends Contract
 
     /**
      * @return string
-     * @throws \Skopa\Ethereum\Exceptions\ABIException
+     * @throws \Skopa\EthereumWallet\Exceptions\ABIException
      */
     public function symbol(): string
     {
@@ -46,7 +46,7 @@ abstract class ERC20TokenContract extends Contract
      * Returns the amount of tokens in existence.
      *
      * @return string
-     * @throws \Skopa\Ethereum\Exceptions\ABIException
+     * @throws \Skopa\EthereumWallet\Exceptions\ABIException
      */
     public function totalSupply(): string
     {
@@ -58,7 +58,7 @@ abstract class ERC20TokenContract extends Contract
      *
      * @param $account string Account address
      * @return string
-     * @throws \Skopa\Ethereum\Exceptions\ABIException
+     * @throws \Skopa\EthereumWallet\Exceptions\ABIException
      */
     public function balanceOf(string $account): string
     {
@@ -75,7 +75,7 @@ abstract class ERC20TokenContract extends Contract
      * @param $recipient string Receiver address
      * @param $amount string Amount to sent
      * @return string Transactions data string
-     * @throws \Skopa\Ethereum\Exceptions\ABIException
+     * @throws \Skopa\EthereumWallet\Exceptions\ABIException
      */
     public function transfer(string $recipient, string $amount): string
     {
@@ -95,7 +95,7 @@ abstract class ERC20TokenContract extends Contract
      * @param $owner string Address of owner
      * @param $spender string Address of spender
      * @return string
-     * @throws \Skopa\Ethereum\Exceptions\ABIException
+     * @throws \Skopa\EthereumWallet\Exceptions\ABIException
      */
     function allowance(string $owner, string $spender): string
     {
@@ -121,7 +121,7 @@ abstract class ERC20TokenContract extends Contract
      * @param string $spender Address of spender
      * @param string $amount Amount
      * @return string
-     * @throws \Skopa\Ethereum\Exceptions\ABIException
+     * @throws \Skopa\EthereumWallet\Exceptions\ABIException
      */
     function approve(string $spender, string $amount): string
     {
@@ -143,7 +143,7 @@ abstract class ERC20TokenContract extends Contract
      * @param string $recipient
      * @param string $amount
      * @return string
-     * @throws \Skopa\Ethereum\Exceptions\ABIException
+     * @throws \Skopa\EthereumWallet\Exceptions\ABIException
      */
     function transferFrom(string $sender, string $recipient, string $amount): string
     {

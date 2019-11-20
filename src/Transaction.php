@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Skopa\Ethereum;
+namespace Skopa\EthereumWallet;
 
 use BI\BigInteger;
 use Brick\Math\BigDecimal;
 
 /**
  * Class Transaction
- * @package Skopa\Ethereum
+ * @package Skopa\EthereumWallet
  */
 class Transaction
 {
