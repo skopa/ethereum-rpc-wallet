@@ -4,6 +4,7 @@
 namespace Skopa\EthereumWallet;
 
 
+use Skopa\EthereumWallet\Contracts\Contract;
 use Skopa\EthereumWallet\Contracts\ERC20TokenContract;
 use Skopa\EthereumWallet\Exceptions\WalletException;
 use Web3p\EthereumTx\Transaction as EthereumTransaction;
@@ -81,7 +82,7 @@ class Wallet
      * @throws WalletException
      * @throws Exceptions\RequestException
      */
-    public function getReceipt(string $hash): TransactionReceipt
+    public function receipt(string $hash): TransactionReceipt
     {
         list($transaction, $receipt) = $this->networkClient->request([
             $this->networkClient->getTransactionByHash($hash),
@@ -147,10 +148,19 @@ class Wallet
      * Manage contract
      *
      * @param ERC20TokenContract $tokenContract
+     * @return ERC20ContractManager
+     */
+    public function contract(ERC20TokenContract $tokenContract): ERC20ContractManager
+    {
+        return new ERC20ContractManager($this->networkClient, $tokenContract, $this);
+    }
+
+    /**
+     * @param Contract $contract
      * @return ContractManager
      */
-    public function contract(ERC20TokenContract $tokenContract): ContractManager
+    public function customContract(Contract $contract): ContractManager
     {
-        return new ContractManager($this->networkClient, $tokenContract, $this);
+        return new ContractManager($this->networkClient, $contract, $this);
     }
 }

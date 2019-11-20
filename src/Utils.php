@@ -5,6 +5,7 @@ namespace Skopa\EthereumWallet;
 
 
 use BI\BigInteger;
+use Brick\Math\BigDecimal;
 use Web3p\EthereumUtil\Util;
 
 /**
@@ -39,6 +40,21 @@ class Utils extends Util
     }
 
     /**
+     * @param BigDecimal $amount
+     * @param int $decimals
+     * @return string
+     */
+    public static function amountToDecimalHex(BigDecimal $amount, int $decimals)
+    {
+        $natural = $amount
+            ->multipliedBy(BigDecimal::of(10)->power($decimals))
+            ->toBigInteger()
+            ->__toString();
+
+        return BigInteger::createSafe($natural)->toHex();
+    }
+
+    /**
      * Static access to methods
      *
      * @param $name
@@ -54,4 +70,6 @@ class Utils extends Util
             return null;
         }
     }
+
+    //TODO: Add formatting for other types.
 }

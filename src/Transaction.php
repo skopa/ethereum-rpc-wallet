@@ -63,11 +63,6 @@ class Transaction
      */
     public function getHexAmount($decimals = 0)
     {
-        $natural = $this->amount
-            ->multipliedBy(BigDecimal::of(10)->power($decimals))
-            ->toBigInteger()
-            ->__toString();
-
-        return BigInteger::createSafe($natural)->toHex();
+        return Utils::amountToDecimalHex($this->amount, $decimals);
     }
 }
