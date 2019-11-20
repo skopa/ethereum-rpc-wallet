@@ -1,0 +1,31 @@
+{
+  "name": "skopa/ethereum-rpc-wallet",
+  "description": "Wallet wrapper for JSONRPC for Ethereum network",
+  "keywords": [
+    "etherzero",
+    "etz",
+    "wallet",
+    "ethereum"
+  ],
+  "authors": [
+    {
+      "name": "Stepan Skopivskyi",
+      "email": "stepan@skop.in.ua"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "Skopa\\Ethereum\\": "src/"
+    }
+  },
+  "require": {
+    "php": ">7.1.0",
+    "ext-json": "*",
+    "ext-mbstring": "*",
+    "web3p/ethereum-util": "^0.1.1",
+    "web3p/ethereum-tx": "^0.3.4",
+    "guzzlehttp/guzzle": "^6.4",
+    "brick/math": "^0.8.8"
+  }
+}
