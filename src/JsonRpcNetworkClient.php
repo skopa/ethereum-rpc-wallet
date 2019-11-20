@@ -8,6 +8,10 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Skopa\Ethereum\Exceptions\RequestException;
 
+/**
+ * Class JsonRpcNetworkClient
+ * @package Skopa\Ethereum
+ */
 class JsonRpcNetworkClient
 {
     /**
@@ -17,7 +21,7 @@ class JsonRpcNetworkClient
     /**
      * @var string version
      */
-    private $jsonrpc;
+    private $jsonrpc = "2.0";
     /**
      * @var string
      */
@@ -27,11 +31,9 @@ class JsonRpcNetworkClient
      * NetworkClient constructor.
      * @param $url string network url
      * @param string $chain
-     * @param array $options
      */
-    public function __construct(string $url, string $chain, $options = ["jsonrpc" => "2.0"])
+    public function __construct(string $url, string $chain)
     {
-        $this->jsonrpc = $options['jsonrpc'];
         $this->chain = $chain;
         $this->httpClient = new Client([
             'http_errors' => false,
@@ -151,6 +153,8 @@ class JsonRpcNetworkClient
     }
 
     /**
+     * Get transaction receipt by hash
+     *
      * @param string $hash
      * @return array
      */
@@ -162,7 +166,7 @@ class JsonRpcNetworkClient
     }
 
     /**
-     * Get block info
+     * Get block info by hash
      *
      * @param string $hash
      * @param bool $onlyHashes
@@ -176,6 +180,8 @@ class JsonRpcNetworkClient
     }
 
     /**
+     * Get chain id
+     *
      * @return string
      */
     public function getChainId(): string
@@ -184,6 +190,8 @@ class JsonRpcNetworkClient
     }
 
     /**
+     * Generate request body
+     *
      * @param string $method
      * @param array $params
      * @return array

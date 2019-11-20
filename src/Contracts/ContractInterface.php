@@ -19,7 +19,7 @@ interface ContractInterface
     /**
      * Get contract ABI
      *
-     * @return string
+     * @return string|null
      */
-    public function getABIJson(): string;
+    public function getABIJson(): ?string;
 }

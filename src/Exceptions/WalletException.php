@@ -13,7 +13,7 @@ class WalletException extends EthereumClientException
     /**
      * @return WalletException
      */
-    public static function alreadyUnlocked()
+    public static function alreadyUnlocked(): WalletException
     {
         return new static("Wallet already unlocked.");
     }
@@ -21,16 +21,17 @@ class WalletException extends EthereumClientException
     /**
      * @return WalletException
      */
-    public static function keyNotSame()
+    public static function keyNotSame(): WalletException
     {
         return new static("Private and public keys are not from one address.");
     }
 
     /**
-     * @return RequestException
+     * @param string $hash
+     * @return WalletException
      */
-    public static function transactionNotExist()
+    public static function transactionNotExist(string $hash): WalletException
     {
-        return new RequestException("Transaction not exist or invalid transaction hash.");
+        return new static("Transaction not exist or invalid transaction hash: $hash");
     }
 }

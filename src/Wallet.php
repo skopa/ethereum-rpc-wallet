@@ -77,8 +77,9 @@ class Wallet
      *
      * @param string $hash
      * @return TransactionReceipt
-     * @throws Exceptions\RequestException
      * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws WalletException
+     * @throws Exceptions\RequestException
      */
     public function getReceipt(string $hash): TransactionReceipt
     {
@@ -88,7 +89,7 @@ class Wallet
         ]);
 
         if (is_null($transaction) || is_null($receipt)) {
-            throw WalletException::transactionNotExist();
+            throw WalletException::transactionNotExist($hash);
         }
 
         $block = $this->networkClient->request([
@@ -110,9 +111,10 @@ class Wallet
      * Unlock wallet
      *
      * @param string $privateKey
+     * @return bool
      * @throws WalletException
      */
-    public function unlock(string $privateKey): void
+    public function unlock(string $privateKey): bool
     {
         if ($this->privateKey !== null) {
             throw WalletException::alreadyUnlocked();
@@ -127,6 +129,7 @@ class Wallet
         }
 
         $this->privateKey = $privateKey;
+        return true;
     }
 
     /**

@@ -4,10 +4,12 @@
 namespace Skopa\Ethereum;
 
 
-use BI\BigInteger;
 use Brick\Math\BigDecimal;
-use Skopa\Ethereum\Exceptions\TransactionException;
 
+/**
+ * Class TransactionReceipt
+ * @package Skopa\Ethereum
+ */
 class TransactionReceipt
 {
     /**
@@ -62,7 +64,6 @@ class TransactionReceipt
      * @param array $receipt
      * @param array $block
      * @return TransactionReceipt
-     * @throws Exceptions\RequestException
      */
     public static function fromArray(array $transaction, array $receipt, array $block): TransactionReceipt
     {

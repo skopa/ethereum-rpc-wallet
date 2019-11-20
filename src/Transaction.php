@@ -20,10 +20,6 @@ class Transaction
      * @var BigDecimal
      */
     private $amount;
-    /**
-     * @var \Web3p\EthereumUtil\Util
-     */
-    private $utils;
 
     /**
      * Transaction constructor.
@@ -32,15 +28,16 @@ class Transaction
      */
     public function __construct(string $receiver, $amount)
     {
-        $this->utils = Utils::getInstance();
         $this->receiver = $receiver;
-        $this->amount = BigDecimal::of($this->utils->isHex($amount) ?
+        $this->amount = BigDecimal::of(Utils::getInstance()->isHex($amount) ?
             BigInteger::createSafe($amount, 16)->toDec()
             : $amount
         );
     }
 
     /**
+     * Get receiver
+     *
      * @return string
      */
     public function getReceiver(): string
@@ -49,6 +46,8 @@ class Transaction
     }
 
     /**
+     * Get amount
+     *
      * @return BigDecimal
      */
     public function getAmount(): BigDecimal
@@ -57,12 +56,18 @@ class Transaction
     }
 
     /**
+     * Get hex representation with defined decimals
+     *
      * @param int $decimals
      * @return string
      */
     public function getHexAmount($decimals = 0)
     {
-        $natural = $this->amount->multipliedBy(BigDecimal::of(10)->power($decimals))->toBigInteger();
-        return BigInteger::createSafe($natural->__toString())->toHex();
+        $natural = $this->amount
+            ->multipliedBy(BigDecimal::of(10)->power($decimals))
+            ->toBigInteger()
+            ->__toString();
+
+        return BigInteger::createSafe($natural)->toHex();
     }
 }

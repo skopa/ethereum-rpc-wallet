@@ -4,7 +4,6 @@
 namespace Skopa\Ethereum;
 
 
-use BI\BigInteger;
 use Brick\Math\BigDecimal;
 use Skopa\Ethereum\Contracts\ERC20TokenContract;
 use Web3p\EthereumTx\Transaction as EthereumTransaction;
@@ -94,10 +93,7 @@ class ContractManager
             ),
         ]);
 
-        return BigDecimal::ofUnscaledValue(
-            BigInteger::createSafe($balance, 16)->toDec(),
-            $this->contract->getDecimals()
-        );
+        return $this->convertAmount($balance);
     }
 
     /**
@@ -127,12 +123,12 @@ class ContractManager
      * Authorize receiver to spend tokens of requested contract
      *
      * @param Transaction $transaction
-     * @return bool
+     * @return string
      * @throws Exceptions\ABIException
      * @throws Exceptions\RequestException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function approve(Transaction $transaction)
+    public function approve(Transaction $transaction): string
     {
         $data = $this->contract->approve(
             $transaction->getReceiver(),
@@ -155,7 +151,7 @@ class ContractManager
      * @throws Exceptions\RequestException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function allowance(string $spender)
+    public function allowance(string $spender): string
     {
         return $this->allowanceBy($this->wallet->getAccount(), $spender);
     }
@@ -170,7 +166,7 @@ class ContractManager
      * @throws Exceptions\RequestException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function allowanceBy(string $owner, string $spender)
+    public function allowanceBy(string $owner, string $spender): BigDecimal
     {
         $allowance = $this->networkClient->request([
             $this->networkClient->rawCall(
@@ -179,10 +175,7 @@ class ContractManager
             )
         ]);
 
-        return BigDecimal::ofUnscaledValue(
-            BigInteger::createSafe($allowance, 16)->toDec(),
-            $this->contract->getDecimals()
-        );
+        return $this->convertAmount($allowance);
     }
 
     /**
@@ -210,13 +203,15 @@ class ContractManager
     }
 
     /**
-     * @param string $rawHex
-     * @return float
+     * Convert from hex to BigDecimal
+     *
+     * @param string $rawHex hex string
+     * @return BigDecimal
      */
-    public function floatAmount(string $rawHex)
+    public function convertAmount(string $rawHex): BigDecimal
     {
         $rawDec = Utils::getInstance()->parseHex($rawHex);
-        return BigDecimal::ofUnscaledValue($rawHex, $this->contract->getDecimals())->toFloat();
+        return BigDecimal::ofUnscaledValue($rawDec, $this->contract->getDecimals());
     }
 
     /**

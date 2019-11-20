@@ -4,8 +4,6 @@
 namespace Skopa\Ethereum\Contracts;
 
 
-use Brick\Math\BigDecimal;
-
 /**
  * Class ERC20TokenContract
  * @package Skopa\Ethereum\Contracts
@@ -23,7 +21,7 @@ abstract class ERC20TokenContract extends Contract
      */
     public function name(): string
     {
-        return '0x' . $this->functionSha('name');
+        return '0x' . $this->functionSha('name', 'name()');
     }
 
     /**
@@ -32,7 +30,7 @@ abstract class ERC20TokenContract extends Contract
      */
     public function decimals(): string
     {
-        return '0x' . $this->functionSha('decimals');
+        return '0x' . $this->functionSha('decimals', 'decimals()');
     }
 
     /**
@@ -41,7 +39,7 @@ abstract class ERC20TokenContract extends Contract
      */
     public function symbol(): string
     {
-        return '0x' . $this->functionSha('symbol');
+        return '0x' . $this->functionSha('symbol', 'symbol()');
     }
 
     /**
@@ -52,7 +50,7 @@ abstract class ERC20TokenContract extends Contract
      */
     public function totalSupply(): string
     {
-        return '0x' . $this->functionSha('totalSupply');
+        return '0x' . $this->functionSha('totalSupply', 'totalSupply()');
     }
 
     /**
@@ -65,7 +63,7 @@ abstract class ERC20TokenContract extends Contract
     public function balanceOf(string $account): string
     {
         return '0x'
-            . $this->functionSha('balanceOf')
+            . $this->functionSha('balanceOf', 'balanceOf()')
             . $this->formattedAddress($account);
     }
 
@@ -82,7 +80,7 @@ abstract class ERC20TokenContract extends Contract
     public function transfer(string $recipient, string $amount): string
     {
         return '0x'
-            . $this->functionSha('transfer')
+            . $this->functionSha('transfer', 'transfer(address,uint256)')
             . $this->formattedAddress($recipient)
             . $this->formattedArg($amount);
     }
@@ -102,7 +100,7 @@ abstract class ERC20TokenContract extends Contract
     function allowance(string $owner, string $spender): string
     {
         return '0x'
-            . $this->functionSha('allowance')
+            . $this->functionSha('allowance', 'allowance(address,address)')
             . $this->formattedAddress($owner)
             . $this->formattedAddress($spender);
     }
@@ -122,13 +120,13 @@ abstract class ERC20TokenContract extends Contract
      * Emits an {Approval} event.
      * @param string $spender Address of spender
      * @param string $amount Amount
-     * @return bool
+     * @return string
      * @throws \Skopa\Ethereum\Exceptions\ABIException
      */
-    function approve(string $spender, string $amount): bool
+    function approve(string $spender, string $amount): string
     {
         return '0x'
-            . $this->functionSha('approve')
+            . $this->functionSha('approve', 'approve(address,uint256)')
             . $this->formattedAddress($spender)
             . $this->formattedArg($amount);
     }
@@ -144,13 +142,13 @@ abstract class ERC20TokenContract extends Contract
      * @param string $sender
      * @param string $recipient
      * @param string $amount
-     * @return bool
+     * @return string
      * @throws \Skopa\Ethereum\Exceptions\ABIException
      */
-    function transferFrom(string $sender, string $recipient, string $amount): bool
+    function transferFrom(string $sender, string $recipient, string $amount): string
     {
         return '0x'
-            . $this->functionSha('transferFrom')
+            . $this->functionSha('transferFrom', 'transferFrom(address,address,uint256)')
             . $this->formattedAddress($sender)
             . $this->formattedAddress($recipient)
             . $this->formattedArg($amount);

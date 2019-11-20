@@ -28,11 +28,30 @@ class Utils extends Util
     }
 
     /**
+     * Parse hex to dec string
+     *
      * @param $hex
      * @return string
      */
-    public function parseHex(string $hex)
+    public static function parseHex(string $hex)
     {
-        return BigInteger::createSafe($hex, 16)->toString();
+        return BigInteger::createSafe($hex, 16)->toDec();
+    }
+
+    /**
+     * Static access to methods
+     *
+     * @param $name
+     * @param $arguments
+     * @return mixed|null
+     */
+    public static function __callStatic($name, $arguments)
+    {
+        try {
+            $method = new \ReflectionMethod(static::getInstance(), $name);
+            return call_user_func($method->getClosure(), $arguments);
+        } catch (\Exception $e) {
+            return null;
+        }
     }
 }

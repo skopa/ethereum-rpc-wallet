@@ -61,18 +61,19 @@ abstract class Contract implements ContractInterface
     /**
      * Generate function cutted sha3
      *
-     * @param $function
+     * @param string $function
+     * @param string $default
      * @return string
      * @throws ABIException
      */
-    protected function functionSha(string $function): string
+    protected function functionSha(string $function, string $default = null): string
     {
-        if (!key_exists($function, $this->ABI)) {
+        if (!key_exists($function, $this->ABI) && is_null($default)) {
             throw ABIException::functionNotExist($function);
         }
 
         return mb_strcut(
-            $this->utils->sha3($this->ABI[$function]['input']),
+            $this->utils->sha3($this->ABI[$function]['input'] ?? $default),
             0,
             8
         );
@@ -106,8 +107,12 @@ abstract class Contract implements ContractInterface
      * @param string $abi
      * @throws ABIException
      */
-    private function processABI(string $abi): void
+    private function processABI(string $abi = null): void
     {
+        if (is_null($abi)) {
+            return;
+        }
+
         // Try to parse json
         try {
             $array = json_decode($abi, true);

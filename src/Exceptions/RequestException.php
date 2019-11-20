@@ -14,7 +14,7 @@ class RequestException extends EthereumClientException
      * @param int $code
      * @return RequestException
      */
-    public static function fromResponse(string $message, int $code)
+    public static function fromResponse(string $message, int $code): RequestException
     {
         return new RequestException("One of requests exit with exception: $message", $code);
     }
@@ -24,7 +24,7 @@ class RequestException extends EthereumClientException
      * @param string $message
      * @return RequestException
      */
-    public static function serverException(int $code, string $message)
+    public static function serverException(int $code, string $message): RequestException
     {
         return new RequestException("Wrong response from JSON RPC (Response code: $code): $message");
     }

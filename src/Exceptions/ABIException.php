@@ -16,7 +16,7 @@ class ABIException extends EthereumClientException
      * @param $functionName
      * @return ABIException
      */
-    public static function functionNotExist($functionName)
+    public static function functionNotExist($functionName): ABIException
     {
         return new static("Provided function: $functionName not exists in ABI.");
     }
@@ -25,7 +25,7 @@ class ABIException extends EthereumClientException
      * @param Exception $exception
      * @return ABIException
      */
-    public static function parseException(Exception $exception)
+    public static function parseException(Exception $exception): ABIException
     {
         return new static(
             'ABI parsing exception: ' . $exception->getMessage(),
