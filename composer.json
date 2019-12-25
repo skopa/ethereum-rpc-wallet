@@ -1,6 +1,7 @@
 {
   "name": "skopa/ethereum-rpc-wallet",
   "description": "Wallet wrapper for JSONRPC for Ethereum network",
+  "type": "library",
   "license": "MIT",
   "keywords": [
     "etherzero",
